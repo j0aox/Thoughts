@@ -1,4 +1,23 @@
 {
+  "name": "thoughts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./index.js localhost 3000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/j0aox/Toughts.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/j0aox/Toughts/issues"
+  },
+  "homepage": "https://github.com/j0aox/Toughts#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
@@ -6,6 +25,7 @@
     "cookie-session": "^2.0.0",
     "express": "^4.18.1",
     "express-flash": "^0.0.2",
+    "express-handlebars": "^6.0.6",
     "express-session": "^1.17.3",
     "gitmoji-cli": "^5.0.2",
     "mysql2": "^2.3.3",
