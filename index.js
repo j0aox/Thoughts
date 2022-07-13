@@ -8,6 +8,12 @@ const app = express()
 
 const conn = require('./db/conn')
 
+// Import Routes
+const thoughtsRoutes = require('./routes/ThoughtsRoutes')
+
+// Import Controller
+const ThoughtController = require('./controllers/ThoughtController')
+
 // Models
 const Thought = require('./models/Thought')
 const User = require('./models/User')
@@ -30,7 +36,7 @@ app.use(express.json())
 app.use(
   session({
     name: 'session',
-    secrete: 'nosso_secret',
+    secret: 'nosso_secret',
     resave: false,
     saveUninitialized: false,
     store: new FileStore({
@@ -39,11 +45,11 @@ app.use(
     }),
     cookie: {
       secure: false,
-      maxAge: 360000,
-      expires: new Date(Date.now() + 360000),
-      httpOnly: true
-    }
-  })
+      maxAge: 3600000,
+      expires: new Date(Date.now() + 3600000),
+      httpOnly: true,
+    },
+  }),
 )
 
 // flash messages
@@ -60,6 +66,11 @@ app.use((req, res, next) => {
 
   next()
 })
+
+// Routes
+app.use('/thoughts', thoughtsRoutes)
+
+app.get('/', ThoughtController.showThoughts)
 
 conn
   .sync()
