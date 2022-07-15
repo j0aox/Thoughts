@@ -9,7 +9,8 @@ const app = express()
 const conn = require('./db/conn')
 
 // Import Routes
-const thoughtsRoutes = require('./routes/ThoughtsRoutes')
+const thoughtsRoutes = require('./routes/thoughtsRoutes')
+const authRoutes = require('./routes/authRoutes')
 
 // Import Controller
 const ThoughtController = require('./controllers/ThoughtController')
@@ -69,6 +70,7 @@ app.use((req, res, next) => {
 
 // Routes
 app.use('/thoughts', thoughtsRoutes)
+app.use('/', authRoutes)
 
 app.get('/', ThoughtController.showThoughts)
 
