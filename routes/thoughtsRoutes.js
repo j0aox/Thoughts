@@ -10,5 +10,6 @@ router.get('/', ThoughtController.showThoughts)
 router.get('/dashboard', checkAuth, ThoughtController.dashboard)
 router.get('/add', checkAuth, ThoughtController.createThought)
 router.post('/add', checkAuth, ThoughtController.createThoughtSave)
+router.post('/remove', checkAuth, ThoughtController.removeThoughtSave)
 
 module.exports = router
