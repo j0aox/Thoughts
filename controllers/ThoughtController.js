@@ -72,4 +72,32 @@ module.exports = class ThoughtController {
       console.log(error)
     }
   }
+
+  static async updateThought(req, res) {
+    const id = req.params.id
+
+    const thought = await Thought.findOne({ where: { id: id }, raw: true })
+
+    res.render('thoughts/edit', { thought })
+  }
+
+  static async updateThoughtSave(req, res) {
+    const id = req.body.id
+
+    const thought = {
+      title: req.body.title
+    }
+
+    try {
+      await Thought.update(thought, { where: { id: id } })
+
+      req.flash('message', 'Pensamento Atualizado com sucesso!')
+
+      req.session.save(() => {
+        res.redirect('/thoughts/dashboard')
+      })
+    } catch (error) {
+      console.log(`Aconteceu um erro: ${error}`)
+    }
+  }
 }
